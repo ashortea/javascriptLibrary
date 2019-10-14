@@ -7,10 +7,8 @@ const jwt = require('jsonwebtoken');
 // SIGNUP 
 router.post('/signup', (req, res) => {
     User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10)
+        username: req.body.username,
+        passwordhash: bcrypt.hashSync(req.body.passwordhash, 10)
     })
     .then(
         createSuccess = (user) => {
@@ -31,12 +29,12 @@ router.post('/signup', (req, res) => {
 router.post('/signin', (req, res) => {
     User.findOne({
         where: {
-            email: req.body.email
+            username: req.body.username
         }
     })
     .then(user => {
         if(user){
-            bcrypt.compare(req.body.password, user.password, (err, matches) => {
+            bcrypt.compare(req.body.passwordhash, user.passwordhash, (err, matches) => {
                 if(matches){
                     let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
                         expiresIn: 60*60*24

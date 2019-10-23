@@ -7,7 +7,7 @@ const Footer =() => {
             <Row>
                 <p>&copy; Eleven Fifty 2018</p>
             </Row>
-        </footer>
+        </footer> 
     )
 };
 

@@ -15,8 +15,7 @@ const App = () => {
      <Header />
      <Router> 
        <Sidebar />
-     </Router>
-  
+     </Router> 
      <Footer />
     </div>
   );
